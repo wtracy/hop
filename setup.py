@@ -40,7 +40,9 @@ class hop_install(install_data.install_data):
         bashrc_path = expanded
         break
 
-    prefix = os.path.join(sys.prefix, 'hop')
+    self.set_undefined_options('install',
+                               ('install_data', 'install_dir'))
+    prefix = os.path.join(self.install_dir, 'hop')
     required_commands = {
       '/hop.bash':"# Initialize the 'hop' script\n source %s" % os.path.join(prefix, 'hop.bash'),
       'hop-lua-script':'# Define an entry point for the lua script version of hop\n'
